@@ -1,0 +1,54 @@
+{
+  "name": "@larcjs/components",
+  "version": "1.0.0",
+  "description": "LARC Components - UI web components library built on the PAN messaging bus",
+  "type": "module",
+  "main": "./src/components/index.js",
+  "exports": {
+    "./pan-data-table": "./src/components/pan-data-table.mjs",
+    "./pan-form": "./src/components/pan-form.mjs",
+    "./pan-grid": "./src/components/pan-grid.mjs",
+    "./pan-inspector": "./src/components/pan-inspector.mjs",
+    "./pan-card": "./src/components/pan-card.mjs",
+    "./pan-chart": "./src/components/pan-chart.mjs",
+    "./pan-dropdown": "./src/components/pan-dropdown.mjs",
+    "./pan-modal": "./src/components/pan-modal.mjs",
+    "./pan-tabs": "./src/components/pan-tabs.mjs",
+    "./pan-toolbar": "./src/components/pan-toolbar.mjs"
+  },
+  "files": [
+    "src/**/*",
+    "tests/**/*",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "echo \"Tests coming soon\" && exit 0"
+  },
+  "keywords": [
+    "web-components",
+    "ui-components",
+    "larc",
+    "pan",
+    "data-grid",
+    "form",
+    "table",
+    "inspector"
+  ],
+  "author": "Chris Robison",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/larcjs/larc-components.git"
+  },
+  "bugs": {
+    "url": "https://github.com/larcjs/larc-components/issues"
+  },
+  "homepage": "https://github.com/larcjs/larc-components#readme",
+  "peerDependencies": {
+    "@larcjs/core": "^1.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.1"
+  }
+}
