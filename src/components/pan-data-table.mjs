@@ -1,7 +1,7 @@
 // <pan-data-table> — Simple table that subscribes to `${resource}.list.state`
 // and publishes row selection via `${resource}.item.select`.
 
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 export class PanDataTable extends HTMLElement {
   static get observedAttributes(){ return ['resource','columns','key','live']; }

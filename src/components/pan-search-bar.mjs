@@ -11,7 +11,7 @@
 //   - Publishes: {topic}.clear
 //   - Subscribes: {topic}.set { query?, filter? }
 
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 export class PanSearchBar extends HTMLElement {
   static get observedAttributes() {

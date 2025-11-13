@@ -2,7 +2,7 @@
 // Listens for `${resource}.item.select`, requests `${resource}.item.get`,
 // and submits via `${resource}.item.save` / deletes via `${resource}.item.delete`.
 
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 export class PanForm extends HTMLElement {
   static get observedAttributes(){ return ['resource','fields','key','live']; }

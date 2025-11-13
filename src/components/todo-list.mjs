@@ -1,5 +1,5 @@
 // Todo list component - subscribes to todo state and publishes user actions
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 // Helper: UUID fallback
 const uid = () => (globalThis.crypto && typeof crypto.randomUUID === 'function')

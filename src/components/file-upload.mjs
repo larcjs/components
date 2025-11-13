@@ -12,7 +12,7 @@
 //   - Publishes: {topic}.remove { index }
 //   - Publishes: {topic}.error { error, file }
 
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 export class FileUpload extends HTMLElement {
   static get observedAttributes() {

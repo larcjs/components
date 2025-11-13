@@ -1,5 +1,5 @@
 // Todo provider component - manages todo state and broadcasts changes
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 class TodoProvider extends HTMLElement {
   pc = new PanClient(this);

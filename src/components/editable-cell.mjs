@@ -14,7 +14,7 @@
 //   - Publishes: {topic}.blur { cellId }
 //   - Subscribes: {topic}.setValue { cellId, value }
 
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 export class EditableCell extends HTMLElement {
   static get observedAttributes() {

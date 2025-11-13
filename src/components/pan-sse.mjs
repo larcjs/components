@@ -6,7 +6,7 @@
 //   - persist-last-event: localStorage key to store lastEventId and pass as ?lastEventId
 //   - backoff: min,max in ms (e.g., "1000,15000"); jittered reconnect
 
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 export class PanSSE extends HTMLElement {
   static get observedAttributes(){ return ['src','topics','with-credentials','persist-last-event','backoff']; }

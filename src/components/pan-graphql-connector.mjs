@@ -20,7 +20,7 @@
 //
 // Publishes retained `${resource}.list.state` and per-item `${resource}.item.state.<id>` on successful operations.
 
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 export class PanGraphQLConnector extends HTMLElement {
   constructor(){

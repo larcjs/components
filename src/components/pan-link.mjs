@@ -9,7 +9,7 @@
 //   <pan-link to="/about">About</pan-link>
 //   <pan-link to="/user/123" replace>Profile</pan-link>
 
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 export class PanLink extends HTMLElement {
   static get observedAttributes() { return ['to', 'replace', 'active-class', 'exact']; }

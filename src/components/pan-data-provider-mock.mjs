@@ -2,7 +2,7 @@
 // Handles generic topics for a named resource: `${resource}.list.get`, `${resource}.item.get`,
 // `${resource}.item.save`, `${resource}.item.delete`. Maintains `${resource}.list.state` (retain).
 
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 const uuid = () => (globalThis.crypto && typeof crypto.randomUUID === 'function')
   ? crypto.randomUUID()

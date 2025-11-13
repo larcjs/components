@@ -1,6 +1,6 @@
 // Minimal PAN Inspector. Displays recent messages and basic controls.
 
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 class PanInspector extends HTMLElement {
   constructor() {

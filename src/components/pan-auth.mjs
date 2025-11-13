@@ -19,7 +19,7 @@
  * </pan-auth>
  */
 
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 class PanAuth extends HTMLElement {
   static get observedAttributes() {

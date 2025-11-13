@@ -14,7 +14,7 @@
 //     <div slot="tab-1">Second tab content</div>
 //   </pan-tabs>
 
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 export class PanTabs extends HTMLElement {
   static get observedAttributes() {

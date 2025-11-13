@@ -12,7 +12,7 @@
 //   - Subscribes: {topic}.goto { page }
 //   - Publishes: {topic}.changed { page, pageSize }
 
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 export class PanPagination extends HTMLElement {
   static get observedAttributes() {

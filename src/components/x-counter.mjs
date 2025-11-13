@@ -1,5 +1,5 @@
 // Simple counter component demonstrating PAN pub/sub pattern
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 class XCounter extends HTMLElement {
   pc = new PanClient(this);

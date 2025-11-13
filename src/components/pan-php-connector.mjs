@@ -15,7 +15,7 @@
 // - This connector accumulates pages locally and republishes the full aggregated list on `${resource}.list.state`.
 // - `filters` may be provided in requests as a JSON string or an array of { key, value }.
 
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 export class PanPhpConnector extends HTMLElement {
   static get observedAttributes(){ return ['resource','api-url','fields','page-size','start-param']; }

@@ -20,7 +20,7 @@
 //   - Requires Chart.js to be loaded: <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 //   - For custom library, implement your own rendering via the 'custom-render' event
 
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 export class PanChart extends HTMLElement {
   static get observedAttributes() {

@@ -10,7 +10,7 @@
 //   - Body shape: { topic, data, retain?, id?, ts? }
 //   - Beware of loops if you also bridge the same server with <pan-sse>; prefer forwarding write intents only
 
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 export class PanForwarder extends HTMLElement {
   static get observedAttributes(){ return ['dest','topics','headers','method','with-credentials','enabled']; }

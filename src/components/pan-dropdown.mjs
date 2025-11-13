@@ -13,7 +13,7 @@
 //   - trigger: Custom trigger button
 //   - default: Custom menu items
 
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 export class PanDropdown extends HTMLElement {
   static get observedAttributes() {

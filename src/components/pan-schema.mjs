@@ -9,7 +9,7 @@
 // - Publishes retained `${resource}.schema.state` with `{ schema }`.
 // - Replies to `${resource}.schema.get` with `{ ok, schema }`.
 
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 export class PanSchema extends HTMLElement {
   static get observedAttributes(){ return ['resource','src']; }

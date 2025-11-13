@@ -18,7 +18,7 @@
  * </pan-jwt>
  */
 
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 /**
  * PAN JWT Authentication Component

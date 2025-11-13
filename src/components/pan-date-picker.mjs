@@ -11,7 +11,7 @@
 //   - Publishes: {topic}.change { date, formatted }
 //   - Subscribes: {topic}.setValue { date }
 
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 export class PanDatePicker extends HTMLElement {
   static get observedAttributes() {

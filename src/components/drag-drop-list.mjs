@@ -16,7 +16,7 @@
 //   - item-{id}: Custom content for specific item
 //   - default: Used as template for items
 
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 export class DragDropList extends HTMLElement {
   static get observedAttributes() {

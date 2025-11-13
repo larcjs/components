@@ -15,7 +15,7 @@
 //   - header: Custom header
 //   - footer: Custom footer with actions
 
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 export class PanModal extends HTMLElement {
   static get observedAttributes() {

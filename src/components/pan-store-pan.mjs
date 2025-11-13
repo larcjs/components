@@ -2,7 +2,7 @@
 // - syncItem: keeps a store in sync with `${resource}.item.state.${id}` and auto-saves changes
 // - syncList: tracks `${resource}.list.state` and granular `${resource}.item.state.*` into an array store
 
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 export function syncItem(store, { resource='items', id=null, key='id', live=true, autoSave=true, debounceMs=300, followSelect=true } = {}){
   const pc = new PanClient();

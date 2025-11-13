@@ -33,7 +33,7 @@
 //   </script>
 // </pan-worker>
 
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 export class PanWorker extends HTMLElement {
   static get observedAttributes(){ return ['topics','src','worker-type']; }

@@ -9,7 +9,7 @@
 //   - Subscribes: nav.goto { path, replace?, state? }
 //   - Subscribes: nav.back, nav.forward
 
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 export class PanRouter extends HTMLElement {
   static get observedAttributes() { return ['base', 'mode', 'auth-topic']; }

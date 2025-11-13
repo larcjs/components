@@ -18,7 +18,7 @@
 //   - Publishes: ${resource}.idb.result { success, data?, error? }
 //   - Publishes: ${resource}.idb.ready {}
 
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 export class PanIDB extends HTMLElement {
   static get observedAttributes() {

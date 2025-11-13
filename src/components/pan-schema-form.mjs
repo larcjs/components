@@ -10,7 +10,7 @@
 // - `${resource}.item.save` with `{ item }`
 // - `${resource}.item.delete` with `{ id }`
 
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 export class PanSchemaForm extends HTMLElement {
   static get observedAttributes(){ return ['resource','key','live']; }

@@ -15,7 +15,7 @@
 //   - Subscribes to outbound-topics and forwards to WebSocket
 //   - Publishes inbound messages to PAN
 
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 export class PanWebSocket extends HTMLElement {
   static get observedAttributes() {

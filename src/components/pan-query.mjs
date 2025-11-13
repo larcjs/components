@@ -3,7 +3,7 @@
 // when query params change. Accepts defaults via attribute or child JSON.
 // Optional URL sync (search or hash) for q/sort/page/size.
 
-import { PanClient } from './pan-client.mjs';
+import { PanClient } from '../../../core/src/components/pan-client.mjs';
 
 export class PanQuery extends HTMLElement {
   static get observedAttributes(){ return ['resource','defaults','sync-url','debounce-ms','auto-request']; }
