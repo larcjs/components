@@ -131,7 +131,7 @@ export class PanInvoiceStore extends HTMLElement {
         from: { name: '', address: '', city: '', phone: '', email: '' },
         to: { name: '', address: '', city: '', phone: '', email: '' },
         invoiceNumber: '',
-        invoiceDate: new Intl.DateFormat('en-US').format(new Date()),
+        invoiceDate: new Date().toLocaleDateString('en-US'),
         dueDate: ''
       },
       items: [],
