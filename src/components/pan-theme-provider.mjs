@@ -109,17 +109,10 @@ export class PanThemeProvider extends HTMLElement {
   }
 
   _broadcast(topic, data) {
-    // Use PAN client to publish message
-    if (!this._panClient) {
-      // Lazy initialize PanClient
-      import('../../core/src/components/pan-client.mjs').then(({ PanClient }) => {
-        this._panClient = new PanClient(this);
-        this._panClient.publish({ topic, data });
-      }).catch(() => {
-        // PAN not available, skip
-      });
-    } else {
-      this._panClient.publish({ topic, data });
+    // Use PAN bus directly to publish message
+    const bus = document.querySelector('pan-bus');
+    if (bus) {
+      bus.publish(topic, data);
     }
 
     // Also dispatch as a custom event for non-PAN listeners
