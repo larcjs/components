@@ -112,7 +112,7 @@ export class PanThemeProvider extends HTMLElement {
     // Use PAN client to publish message
     if (!this._panClient) {
       // Lazy initialize PanClient
-      import('../../../core/src/components/pan-client.mjs').then(({ PanClient }) => {
+      import('../../core/src/components/pan-client.mjs').then(({ PanClient }) => {
         this._panClient = new PanClient(this);
         this._panClient.publish({ topic, data });
       }).catch(() => {
