@@ -26,6 +26,10 @@ export class PanForm extends HTMLElement {
       try { const { data } = await this.pc.request(`${this.resource}.item.get`, { id }); this.#setValue(data?.item || {}); }
       catch { /* ignore */ }
     });
+    this.#attachHandlers();
+  }
+
+  #attachHandlers(){
     const form = this.shadowRoot.getElementById('f');
     if (form) form.onsubmit = (e)=>{ e.preventDefault(); this.#save(); };
     const del = this.shadowRoot.getElementById('del');
@@ -83,7 +87,7 @@ export class PanForm extends HTMLElement {
     return out;
   }
 
-  #setValue(v){ this.value = v || {}; this.render(); this.#wire(); }
+  #setValue(v){ this.value = v || {}; this.render(); this.#attachHandlers(); }
 
   render(){
     const h = String.raw; const v = this.value || {};
@@ -109,8 +113,6 @@ export class PanForm extends HTMLElement {
         </div>
       </form>
     `;
-    // If a value is already present, ensure live subscription is set
-    this.#subscribeLive();
   }
 
   #escape(s){ return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c])); }
