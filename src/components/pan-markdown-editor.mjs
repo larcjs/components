@@ -27,6 +27,8 @@
  *   <pan-markdown-editor value="# Hello" preview="true"></pan-markdown-editor>
  */
 
+import './pan-markdown-renderer.mjs';
+
 export class PanMarkdownEditor extends HTMLElement {
   static observedAttributes = ['value', 'placeholder', 'preview', 'autosave'];
 
