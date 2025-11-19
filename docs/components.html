@@ -1,0 +1,1956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LARC Components Documentation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f5f5f5;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      min-height: 100vh;
+    }
+
+    nav {
+      background: #2c3e50;
+      color: white;
+      padding: 20px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    nav h1 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    nav ul {
+      list-style: none;
+    }
+
+    nav li {
+      margin: 8px 0;
+    }
+
+    nav a {
+      color: #ecf0f1;
+      text-decoration: none;
+      font-size: 14px;
+      display: block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+
+    nav a:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    nav code {
+      font-family: 'Monaco', 'Menlo', monospace;
+      font-size: 13px;
+    }
+
+    main {
+      padding: 40px;
+      max-width: 1200px;
+    }
+
+    .component {
+      background: white;
+      padding: 30px;
+      margin-bottom: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+      font-size: 28px;
+    }
+
+    h3 {
+      color: #34495e;
+      margin-top: 24px;
+      margin-bottom: 12px;
+      font-size: 20px;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 4px;
+    }
+
+    h4 {
+      color: #555;
+      margin-top: 16px;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+
+    .description {
+      color: #666;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    code {
+      background: #f8f9fa;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Monaco', 'Menlo', monospace;
+      font-size: 14px;
+      color: #e74c3c;
+    }
+
+    pre {
+      background: #2c3e50;
+      color: #ecf0f1;
+      padding: 16px;
+      border-radius: 4px;
+      overflow-x: auto;
+      margin: 12px 0;
+    }
+
+    pre code {
+      background: none;
+      color: #ecf0f1;
+      padding: 0;
+    }
+
+    .attr-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+    }
+
+    .attr-table th,
+    .attr-table td {
+      text-align: left;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .attr-table th {
+      background: #f8f9fa;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    .attr-table tr:hover {
+      background: #f8f9fa;
+    }
+
+    .topic-list,
+    .slot-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .topic-list li,
+    .slot-list li {
+      padding: 6px 0;
+      border-bottom: 1px solid #ecf0f1;
+    }
+
+    .topic-list li:last-child,
+    .slot-list li:last-child {
+      border-bottom: none;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        position: relative;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <h1>LARC Components</h1>
+      <ul>
+        <li><a href="#drag-drop-list">&lt;drag-drop-list&gt;</a></li>
+        <li><a href="#editable-cell">&lt;editable-cell&gt;</a></li>
+        <li><a href="#file-upload">&lt;file-upload&gt;</a></li>
+        <li><a href="#pan-card">&lt;pan-card&gt;</a></li>
+        <li><a href="#pan-chart">&lt;pan-chart&gt;</a></li>
+        <li><a href="#pan-data-connector">&lt;pan-data-connector&gt;</a></li>
+        <li><a href="#pan-data-provider">&lt;pan-data-provider&gt;</a></li>
+        <li><a href="#pan-data-provider">&lt;pan-data-provider&gt;</a></li>
+        <li><a href="#pan-data-table">&lt;pan-data-table&gt;</a></li>
+        <li><a href="#pan-date-picker">&lt;pan-date-picker&gt;</a></li>
+        <li><a href="#pan-dropdown">&lt;pan-dropdown&gt;</a></li>
+        <li><a href="#pan-files">&lt;pan-files&gt;</a></li>
+        <li><a href="#pan-form">&lt;pan-form&gt;</a></li>
+        <li><a href="#pan-forwarder">&lt;pan-forwarder&gt;</a></li>
+        <li><a href="#pan-graphql-connector">&lt;pan-graphql-connector&gt;</a></li>
+        <li><a href="#pan-idb">&lt;pan-idb&gt;</a></li>
+        <li><a href="#pan-invoice-store">&lt;pan-invoice-store&gt;</a></li>
+        <li><a href="#pan-link">&lt;pan-link&gt;</a></li>
+        <li><a href="#pan-markdown-editor">&lt;pan-markdown-editor&gt;</a></li>
+        <li><a href="#pan-markdown-renderer">&lt;pan-markdown-renderer&gt;</a></li>
+        <li><a href="#pan-modal">&lt;pan-modal&gt;</a></li>
+        <li><a href="#pan-pagination">&lt;pan-pagination&gt;</a></li>
+        <li><a href="#pan-php-connector">&lt;pan-php-connector&gt;</a></li>
+        <li><a href="#pan-query">&lt;pan-query&gt;</a></li>
+        <li><a href="#pan-router">&lt;pan-router&gt;</a></li>
+        <li><a href="#pan-schema-form">&lt;pan-schema-form&gt;</a></li>
+        <li><a href="#pan-schema">&lt;pan-schema&gt;</a></li>
+        <li><a href="#pan-search-bar">&lt;pan-search-bar&gt;</a></li>
+        <li><a href="#pan-sse">&lt;pan-sse&gt;</a></li>
+        <li><a href="#pan-tabs">&lt;pan-tabs&gt;</a></li>
+        <li><a href="#pan-theme-provider">&lt;pan-theme-provider&gt;</a></li>
+        <li><a href="#pan-theme-toggle">&lt;pan-theme-toggle&gt;</a></li>
+        <li><a href="#pan-tree">&lt;pan-tree&gt;</a></li>
+        <li><a href="#pan-websocket">&lt;pan-websocket&gt;</a></li>
+        <li><a href="#pan-worker">&lt;pan-worker&gt;</a></li>
+        <li><a href="#user-avatar">&lt;user-avatar&gt;</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <h1 style="margin-bottom: 30px;">Component Documentation</h1>
+      
+    <div class="component" id="drag-drop-list">
+      <h2><code>&lt;drag-drop-list&gt;</code></h2>
+      <p class="description">Draggable list with reordering and PAN integration</p>
+  
+      <h3>Attributes</h3>
+      <table class="attr-table">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <td><code>topic</code></td>
+            <td>Topic prefix for events</td>
+          </tr>
+      
+          <tr>
+            <td><code>items</code></td>
+            <td>JSON array of items with { id, content } structure</td>
+          </tr>
+      
+          <tr>
+            <td><code>disabled</code></td>
+            <td>Disable drag functionality</td>
+          </tr>
+      
+          <tr>
+            <td><code>handle</code></td>
+            <td>CSS selector for drag handle (default: entire item)</td>
+          </tr>
+      
+          <tr>
+            <td><code>Publishes</code></td>
+            <td>{topic}.reorder { items, from, to }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Publishes</code></td>
+            <td>{topic}.drop { item, index }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Subscribes</code></td>
+            <td>{topic}.setItems { items }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Subscribes</code></td>
+            <td>{topic}.addItem { item, index? }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Subscribes</code></td>
+            <td>{topic}.removeItem { id }</td>
+          </tr>
+      
+          <tr>
+            <td><code>item-{id}</code></td>
+            <td>Custom content for specific item</td>
+          </tr>
+      
+          <tr>
+            <td><code>default</code></td>
+            <td>Used as template for items</td>
+          </tr>
+      
+        </tbody>
+      </table>
+    <h3>PAN Topics</h3>
+      <h4>Subscribes</h4>
+      <ul class="topic-list">
+      <li><code>{topic}.setItems { items }</code></li>
+<li><code>{topic}.addItem { item, index? }</code></li>
+<li><code>{topic}.removeItem { id }</code></li>
+</ul>
+
+      <h4>Publishes</h4>
+      <ul class="topic-list">
+      <li><code>{topic}.reorder { items, from, to }</code></li>
+<li><code>{topic}.drop { item, index }</code></li>
+</ul>
+
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;drag-drop-list
+  topic="value"&gt;&lt;/drag-drop-list&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="editable-cell">
+      <h2><code>&lt;editable-cell&gt;</code></h2>
+      <p class="description">In-place editable cell with PAN integration</p>
+  
+      <h3>Attributes</h3>
+      <table class="attr-table">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <td><code>value</code></td>
+            <td>Current cell value</td>
+          </tr>
+      
+          <tr>
+            <td><code>type</code></td>
+            <td>text, number, email, url, tel, date (default: text)</td>
+          </tr>
+      
+          <tr>
+            <td><code>placeholder</code></td>
+            <td>Placeholder text</td>
+          </tr>
+      
+          <tr>
+            <td><code>topic</code></td>
+            <td>Topic prefix for events</td>
+          </tr>
+      
+          <tr>
+            <td><code>cell-id</code></td>
+            <td>Identifier for this cell</td>
+          </tr>
+      
+          <tr>
+            <td><code>editable</code></td>
+            <td>Enable editing (default: true)</td>
+          </tr>
+      
+          <tr>
+            <td><code>multiline</code></td>
+            <td>Use textarea for editing</td>
+          </tr>
+      
+          <tr>
+            <td><code>Publishes</code></td>
+            <td>{topic}.change { cellId, value, oldValue }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Publishes</code></td>
+            <td>{topic}.focus { cellId }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Publishes</code></td>
+            <td>{topic}.blur { cellId }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Subscribes</code></td>
+            <td>{topic}.setValue { cellId, value }</td>
+          </tr>
+      
+        </tbody>
+      </table>
+    <h3>PAN Topics</h3>
+      <h4>Subscribes</h4>
+      <ul class="topic-list">
+      <li><code>{topic}.setValue { cellId, value }</code></li>
+</ul>
+
+      <h4>Publishes</h4>
+      <ul class="topic-list">
+      <li><code>{topic}.change { cellId, value, oldValue }</code></li>
+<li><code>{topic}.focus { cellId }</code></li>
+<li><code>{topic}.blur { cellId }</code></li>
+</ul>
+
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;editable-cell
+  value="value"&gt;&lt;/editable-cell&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="file-upload">
+      <h2><code>&lt;file-upload&gt;</code></h2>
+      <p class="description">File upload with preview and PAN integration</p>
+  
+      <h3>Attributes</h3>
+      <table class="attr-table">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <td><code>accept</code></td>
+            <td>File type filter (e.g., "image/*", ".pdf,.doc")</td>
+          </tr>
+      
+          <tr>
+            <td><code>multiple</code></td>
+            <td>Allow multiple files</td>
+          </tr>
+      
+          <tr>
+            <td><code>max-size</code></td>
+            <td>Maximum file size in bytes</td>
+          </tr>
+      
+          <tr>
+            <td><code>topic</code></td>
+            <td>Topic prefix for events</td>
+          </tr>
+      
+          <tr>
+            <td><code>preview</code></td>
+            <td>Show image preview (default: true for images)</td>
+          </tr>
+      
+          <tr>
+            <td><code>drag-drop</code></td>
+            <td>Enable drag-and-drop (default: true)</td>
+          </tr>
+      
+          <tr>
+            <td><code>Publishes</code></td>
+            <td>{topic}.upload { files: FileList, data: Array<{name, size, type, dataUrl?}> }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Publishes</code></td>
+            <td>{topic}.remove { index }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Publishes</code></td>
+            <td>{topic}.error { error, file }</td>
+          </tr>
+      
+        </tbody>
+      </table>
+    <h3>PAN Topics</h3>
+      <h4>Publishes</h4>
+      <ul class="topic-list">
+      <li><code>{topic}.upload { files: FileList, data: Array<{name, size, type, dataUrl?}> }</code></li>
+<li><code>{topic}.remove { index }</code></li>
+<li><code>{topic}.error { error, file }</code></li>
+</ul>
+
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;file-upload
+  accept="value"&gt;&lt;/file-upload&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-card">
+      <h2><code>&lt;pan-card&gt;</code></h2>
+      <p class="description">Reusable card container component</p>
+  
+      <h3>Attributes</h3>
+      <table class="attr-table">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <td><code>header</code></td>
+            <td>Card header text</td>
+          </tr>
+      
+          <tr>
+            <td><code>footer</code></td>
+            <td>Card footer text</td>
+          </tr>
+      
+          <tr>
+            <td><code>variant</code></td>
+            <td>visual style (default, primary, secondary, danger, success)</td>
+          </tr>
+      
+          <tr>
+            <td><code>elevation</code></td>
+            <td>shadow depth (0-3)</td>
+          </tr>
+      
+          <tr>
+            <td><code>hoverable</code></td>
+            <td>add hover effect</td>
+          </tr>
+      
+          <tr>
+            <td><code>default</code></td>
+            <td>Main card content</td>
+          </tr>
+      
+          <tr>
+            <td><code>header</code></td>
+            <td>Custom header content</td>
+          </tr>
+      
+          <tr>
+            <td><code>footer</code></td>
+            <td>Custom footer content</td>
+          </tr>
+      
+          <tr>
+            <td><code>actions</code></td>
+            <td>Action buttons area</td>
+          </tr>
+      
+        </tbody>
+      </table>
+    
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-card
+  header="value"&gt;&lt;/pan-card&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-chart">
+      <h2><code>&lt;pan-chart&gt;</code></h2>
+      <p class="description">Chart wrapper with PAN integration</p>
+  
+      <h3>Attributes</h3>
+      <table class="attr-table">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <td><code>type</code></td>
+            <td>line, bar, pie, doughnut, radar, polarArea, scatter (default: line)</td>
+          </tr>
+      
+          <tr>
+            <td><code>data</code></td>
+            <td>JSON chart data</td>
+          </tr>
+      
+          <tr>
+            <td><code>options</code></td>
+            <td>JSON chart options</td>
+          </tr>
+      
+          <tr>
+            <td><code>topic</code></td>
+            <td>Topic prefix for events</td>
+          </tr>
+      
+          <tr>
+            <td><code>library</code></td>
+            <td>chart-js, custom (default: chart-js)</td>
+          </tr>
+      
+          <tr>
+            <td><code>width</code></td>
+            <td>Chart width (default: 100%)</td>
+          </tr>
+      
+          <tr>
+            <td><code>height</code></td>
+            <td>Chart height (default: 300px)</td>
+          </tr>
+      
+          <tr>
+            <td><code>Publishes</code></td>
+            <td>{topic}.ready { chart }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Publishes</code></td>
+            <td>{topic}.click { dataPoint, datasetIndex, index }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Publishes</code></td>
+            <td>{topic}.hover { dataPoint, datasetIndex, index }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Subscribes</code></td>
+            <td>{topic}.update { data, options }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Subscribes</code></td>
+            <td>{topic}.addData { label, data }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Subscribes</code></td>
+            <td>{topic}.removeData { index }</td>
+          </tr>
+      
+        </tbody>
+      </table>
+    <h3>PAN Topics</h3>
+      <h4>Subscribes</h4>
+      <ul class="topic-list">
+      <li><code>{topic}.update { data, options }</code></li>
+<li><code>{topic}.addData { label, data }</code></li>
+<li><code>{topic}.removeData { index }</code></li>
+</ul>
+
+      <h4>Publishes</h4>
+      <ul class="topic-list">
+      <li><code>{topic}.ready { chart }</code></li>
+<li><code>{topic}.click { dataPoint, datasetIndex, index }</code></li>
+<li><code>{topic}.hover { dataPoint, datasetIndex, index }</code></li>
+</ul>
+
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-chart
+  type="value"&gt;&lt;/pan-chart&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-data-connector">
+      <h2><code>&lt;pan-data-connector&gt;</code></h2>
+      <p class="description">REST data connector for PAN CRUD demos</p>
+  
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-data-connector&gt;&lt;/pan-data-connector&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-data-provider">
+      <h2><code>&lt;pan-data-provider&gt;</code></h2>
+      <p class="description">Mock data provider for PAN CRUD demos</p>
+  
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-data-provider&gt;&lt;/pan-data-provider&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-data-provider">
+      <h2><code>&lt;pan-data-provider&gt;</code></h2>
+      <p class="description">Mock data provider for PAN CRUD demos</p>
+  
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-data-provider&gt;&lt;/pan-data-provider&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-data-table">
+      <h2><code>&lt;pan-data-table&gt;</code></h2>
+      <p class="description">Simple table that subscribes to `${resource}.list.state`</p>
+  
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-data-table&gt;&lt;/pan-data-table&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-date-picker">
+      <h2><code>&lt;pan-date-picker&gt;</code></h2>
+      <p class="description">Date picker with calendar and PAN integration</p>
+  
+      <h3>Attributes</h3>
+      <table class="attr-table">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <td><code>value</code></td>
+            <td>Selected date (YYYY-MM-DD format)</td>
+          </tr>
+      
+          <tr>
+            <td><code>format</code></td>
+            <td>Display format (default: YYYY-MM-DD)</td>
+          </tr>
+      
+          <tr>
+            <td><code>min</code></td>
+            <td>Minimum date</td>
+          </tr>
+      
+          <tr>
+            <td><code>max</code></td>
+            <td>Maximum date</td>
+          </tr>
+      
+          <tr>
+            <td><code>topic</code></td>
+            <td>Topic prefix for events</td>
+          </tr>
+      
+          <tr>
+            <td><code>placeholder</code></td>
+            <td>Input placeholder</td>
+          </tr>
+      
+          <tr>
+            <td><code>Publishes</code></td>
+            <td>{topic}.change { date, formatted }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Subscribes</code></td>
+            <td>{topic}.setValue { date }</td>
+          </tr>
+      
+        </tbody>
+      </table>
+    <h3>PAN Topics</h3>
+      <h4>Subscribes</h4>
+      <ul class="topic-list">
+      <li><code>{topic}.setValue { date }</code></li>
+</ul>
+
+      <h4>Publishes</h4>
+      <ul class="topic-list">
+      <li><code>{topic}.change { date, formatted }</code></li>
+</ul>
+
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-date-picker
+  value="value"&gt;&lt;/pan-date-picker&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-dropdown">
+      <h2><code>&lt;pan-dropdown&gt;</code></h2>
+      <p class="description">Dropdown menu with PAN topic integration</p>
+  
+      <h3>Attributes</h3>
+      <table class="attr-table">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <td><code>label</code></td>
+            <td>Button label</td>
+          </tr>
+      
+          <tr>
+            <td><code>position</code></td>
+            <td>bottom-left, bottom-right, top-left, top-right (default: bottom-left)</td>
+          </tr>
+      
+          <tr>
+            <td><code>topic</code></td>
+            <td>Topic prefix for events</td>
+          </tr>
+      
+          <tr>
+            <td><code>items</code></td>
+            <td>JSON array of menu items [{label, value, icon?, disabled?}]</td>
+          </tr>
+      
+          <tr>
+            <td><code>Publishes</code></td>
+            <td>{topic}.select { value, label }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Publishes</code></td>
+            <td>{topic}.opened, {topic}.closed</td>
+          </tr>
+      
+          <tr>
+            <td><code>trigger</code></td>
+            <td>Custom trigger button</td>
+          </tr>
+      
+          <tr>
+            <td><code>default</code></td>
+            <td>Custom menu items</td>
+          </tr>
+      
+        </tbody>
+      </table>
+    <h3>PAN Topics</h3>
+      <h4>Publishes</h4>
+      <ul class="topic-list">
+      <li><code>{topic}.select { value, label }</code></li>
+<li><code>{topic}.opened, {topic}.closed</code></li>
+</ul>
+
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-dropdown
+  label="value"&gt;&lt;/pan-dropdown&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-files">
+      <h2><code>&lt;pan-files&gt;</code></h2>
+      <p class="description">No description available</p>
+  
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-files&gt;&lt;/pan-files&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-form">
+      <h2><code>&lt;pan-form&gt;</code></h2>
+      <p class="description">Basic CRUD form for a named resource.</p>
+  
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-form&gt;&lt;/pan-form&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-forwarder">
+      <h2><code>&lt;pan-forwarder&gt;</code></h2>
+      <p class="description">Mirror PAN topics to an HTTP endpoint (e.g., SSE hub POST)</p>
+  
+      <h3>Attributes</h3>
+      <table class="attr-table">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <td><code>dest</code></td>
+            <td>URL to POST to (required)</td>
+          </tr>
+      
+          <tr>
+            <td><code>topics</code></td>
+            <td>space-separated patterns (default "*")</td>
+          </tr>
+      
+          <tr>
+            <td><code>headers</code></td>
+            <td>JSON encoded headers, or semicolon-separated "Key: Value; Key2: Value2"</td>
+          </tr>
+      
+          <tr>
+            <td><code>method</code></td>
+            <td>HTTP method (default POST)</td>
+          </tr>
+      
+          <tr>
+            <td><code>with-credentials</code></td>
+            <td>include credentials (default true)</td>
+          </tr>
+      
+          <tr>
+            <td><code>enabled</code></td>
+            <td>"true" to enable (default true)</td>
+          </tr>
+      
+        </tbody>
+      </table>
+    
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-forwarder
+  dest="value"&gt;&lt;/pan-forwarder&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-graphql-connector">
+      <h2><code>&lt;pan-graphql-connector&gt;</code></h2>
+      <p class="description">GraphQL bridge for PAN CRUD topics</p>
+  
+      <h3>Attributes</h3>
+      <table class="attr-table">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <td><code>endpoint</code></td>
+            <td>GraphQL HTTP endpoint URL (required)</td>
+          </tr>
+      
+          <tr>
+            <td><code>resource</code></td>
+            <td>logical resource name (e.g., "users")</td>
+          </tr>
+      
+          <tr>
+            <td><code>key</code></td>
+            <td>identifier field (default: "id")</td>
+          </tr>
+      
+        </tbody>
+      </table>
+    
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-graphql-connector
+  endpoint="value"&gt;&lt;/pan-graphql-connector&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-idb">
+      <h2><code>&lt;pan-idb&gt;</code></h2>
+      <p class="description">IndexedDB bridge to PAN topics</p>
+  
+      <h3>Attributes</h3>
+      <table class="attr-table">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <td><code>database</code></td>
+            <td>database name (required)</td>
+          </tr>
+      
+          <tr>
+            <td><code>version</code></td>
+            <td>database version (default: 1)</td>
+          </tr>
+      
+          <tr>
+            <td><code>store</code></td>
+            <td>object store name (required)</td>
+          </tr>
+      
+          <tr>
+            <td><code>key-path</code></td>
+            <td>key path for objects (default: "id")</td>
+          </tr>
+      
+          <tr>
+            <td><code>auto-increment</code></td>
+            <td>use auto-incrementing keys (default: false)</td>
+          </tr>
+      
+          <tr>
+            <td><code>indexes</code></td>
+            <td>JSON array of index configs: [{name, keyPath, unique?, multiEntry?}]</td>
+          </tr>
+      
+          <tr>
+            <td><code>Subscribes</code></td>
+            <td>${resource}.idb.get { key }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Subscribes</code></td>
+            <td>${resource}.idb.put { item }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Subscribes</code></td>
+            <td>${resource}.idb.add { item }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Subscribes</code></td>
+            <td>${resource}.idb.delete { key }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Subscribes</code></td>
+            <td>${resource}.idb.clear {}</td>
+          </tr>
+      
+          <tr>
+            <td><code>Subscribes</code></td>
+            <td>${resource}.idb.list { index?, range?, direction?, limit? }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Subscribes</code></td>
+            <td>${resource}.idb.query { index, value }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Publishes</code></td>
+            <td>${resource}.idb.result { success, data?, error? }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Publishes</code></td>
+            <td>${resource}.idb.ready {}</td>
+          </tr>
+      
+        </tbody>
+      </table>
+    <h3>PAN Topics</h3>
+      <h4>Subscribes</h4>
+      <ul class="topic-list">
+      <li><code>${resource}.idb.get { key }</code></li>
+<li><code>${resource}.idb.put { item }</code></li>
+<li><code>${resource}.idb.add { item }</code></li>
+<li><code>${resource}.idb.delete { key }</code></li>
+<li><code>${resource}.idb.clear {}</code></li>
+<li><code>${resource}.idb.list { index?, range?, direction?, limit? }</code></li>
+<li><code>${resource}.idb.query { index, value }</code></li>
+</ul>
+
+      <h4>Publishes</h4>
+      <ul class="topic-list">
+      <li><code>${resource}.idb.result { success, data?, error? }</code></li>
+<li><code>${resource}.idb.ready {}</code></li>
+</ul>
+
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-idb
+  database="value"&gt;&lt;/pan-idb&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-invoice-store">
+      <h2><code>&lt;pan-invoice-store&gt;</code></h2>
+      <p class="description">No description available</p>
+  
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-invoice-store&gt;&lt;/pan-invoice-store&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-link">
+      <h2><code>&lt;pan-link&gt;</code></h2>
+      <p class="description">Declarative navigation via PAN topics</p>
+  
+      <h3>Attributes</h3>
+      <table class="attr-table">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <td><code>to</code></td>
+            <td>target path</td>
+          </tr>
+      
+          <tr>
+            <td><code>replace</code></td>
+            <td>use replaceState instead of pushState</td>
+          </tr>
+      
+          <tr>
+            <td><code>active-class</code></td>
+            <td>CSS class to add when link matches current route (default: 'active')</td>
+          </tr>
+      
+          <tr>
+            <td><code>exact</code></td>
+            <td>require exact match for active state (default: false)</td>
+          </tr>
+      
+        </tbody>
+      </table>
+    
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-link
+  to="value"&gt;&lt;/pan-link&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-markdown-editor">
+      <h2><code>&lt;pan-markdown-editor&gt;</code></h2>
+      <p class="description">No description available</p>
+  
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-markdown-editor&gt;&lt;/pan-markdown-editor&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-markdown-renderer">
+      <h2><code>&lt;pan-markdown-renderer&gt;</code></h2>
+      <p class="description">No description available</p>
+  
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-markdown-renderer&gt;&lt;/pan-markdown-renderer&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-modal">
+      <h2><code>&lt;pan-modal&gt;</code></h2>
+      <p class="description">Modal dialog with PAN topic control</p>
+  
+      <h3>Attributes</h3>
+      <table class="attr-table">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <td><code>topic</code></td>
+            <td>Topic to subscribe for show/hide (default: modal.{id})</td>
+          </tr>
+      
+          <tr>
+            <td><code>modal-id</code></td>
+            <td>Identifier for this modal</td>
+          </tr>
+      
+          <tr>
+            <td><code>title</code></td>
+            <td>Modal title</td>
+          </tr>
+      
+          <tr>
+            <td><code>size</code></td>
+            <td>sm, md, lg, xl, full (default: md)</td>
+          </tr>
+      
+          <tr>
+            <td><code>closable</code></td>
+            <td>Show close button (default: true)</td>
+          </tr>
+      
+          <tr>
+            <td><code>Subscribes</code></td>
+            <td>{topic}.show, {topic}.hide, {topic}.toggle</td>
+          </tr>
+      
+          <tr>
+            <td><code>Publishes</code></td>
+            <td>{topic}.opened, {topic}.closed, {topic}.action</td>
+          </tr>
+      
+          <tr>
+            <td><code>default</code></td>
+            <td>Modal content</td>
+          </tr>
+      
+          <tr>
+            <td><code>header</code></td>
+            <td>Custom header</td>
+          </tr>
+      
+          <tr>
+            <td><code>footer</code></td>
+            <td>Custom footer with actions</td>
+          </tr>
+      
+        </tbody>
+      </table>
+    <h3>PAN Topics</h3>
+      <h4>Subscribes</h4>
+      <ul class="topic-list">
+      <li><code>{topic}.show, {topic}.hide, {topic}.toggle</code></li>
+</ul>
+
+      <h4>Publishes</h4>
+      <ul class="topic-list">
+      <li><code>{topic}.opened, {topic}.closed, {topic}.action</code></li>
+</ul>
+
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-modal
+  topic="value"&gt;&lt;/pan-modal&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-pagination">
+      <h2><code>&lt;pan-pagination&gt;</code></h2>
+      <p class="description">Pagination control with PAN topic integration</p>
+  
+      <h3>Attributes</h3>
+      <table class="attr-table">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <td><code>current-page</code></td>
+            <td>Current page number (1-based, default: 1)</td>
+          </tr>
+      
+          <tr>
+            <td><code>total-pages</code></td>
+            <td>Total number of pages</td>
+          </tr>
+      
+          <tr>
+            <td><code>total-items</code></td>
+            <td>Total number of items</td>
+          </tr>
+      
+          <tr>
+            <td><code>page-size</code></td>
+            <td>Items per page</td>
+          </tr>
+      
+          <tr>
+            <td><code>topic</code></td>
+            <td>Topic prefix for events</td>
+          </tr>
+      
+          <tr>
+            <td><code>show-info</code></td>
+            <td>Show "Page X of Y" text (default: true)</td>
+          </tr>
+      
+          <tr>
+            <td><code>show-jump</code></td>
+            <td>Show page jump input (default: false)</td>
+          </tr>
+      
+          <tr>
+            <td><code>Subscribes</code></td>
+            <td>{topic}.goto { page }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Publishes</code></td>
+            <td>{topic}.changed { page, pageSize }</td>
+          </tr>
+      
+        </tbody>
+      </table>
+    <h3>PAN Topics</h3>
+      <h4>Subscribes</h4>
+      <ul class="topic-list">
+      <li><code>{topic}.goto { page }</code></li>
+</ul>
+
+      <h4>Publishes</h4>
+      <ul class="topic-list">
+      <li><code>{topic}.changed { page, pageSize }</code></li>
+</ul>
+
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-pagination
+  current-page="value"&gt;&lt;/pan-pagination&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-php-connector">
+      <h2><code>&lt;pan-php-connector&gt;</code></h2>
+      <p class="description">Bridge PAN list topics to a PHP endpoint shaped like api.php</p>
+  
+      <h3>Attributes</h3>
+      <table class="attr-table">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <td><code>resource</code></td>
+            <td>table/resource name (e.g., "Business")</td>
+          </tr>
+      
+          <tr>
+            <td><code>api-url</code></td>
+            <td>endpoint URL (default: "api.php")</td>
+          </tr>
+      
+          <tr>
+            <td><code>fields</code></td>
+            <td>CSV list of columns to select (optional; default: all/"*")</td>
+          </tr>
+      
+          <tr>
+            <td><code>page-size</code></td>
+            <td>page size to request (api.php caps to 20)</td>
+          </tr>
+      
+          <tr>
+            <td><code>start-param</code></td>
+            <td>name of the paging param (default: "start")</td>
+          </tr>
+      
+        </tbody>
+      </table>
+    
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-php-connector
+  resource="value"&gt;&lt;/pan-php-connector&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-query">
+      <h2><code>&lt;pan-query&gt;</code></h2>
+      <p class="description">Query orchestrator for PAN resources.</p>
+  
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-query&gt;&lt;/pan-query&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-router">
+      <h2><code>&lt;pan-router&gt;</code></h2>
+      <p class="description">Sync URL ↔ nav.state via PAN topics</p>
+  
+      <h3>Attributes</h3>
+      <table class="attr-table">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <td><code>base</code></td>
+            <td>base path for routing (default: '')</td>
+          </tr>
+      
+          <tr>
+            <td><code>mode</code></td>
+            <td>'hash' or 'history' (default: 'history')</td>
+          </tr>
+      
+          <tr>
+            <td><code>auth-topic</code></td>
+            <td>topic to check for auth guards (default: 'auth.state')</td>
+          </tr>
+      
+          <tr>
+            <td><code>Publishes</code></td>
+            <td>nav.state (retained) { path, query, hash, params }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Subscribes</code></td>
+            <td>nav.goto { path, replace?, state? }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Subscribes</code></td>
+            <td>nav.back, nav.forward</td>
+          </tr>
+      
+        </tbody>
+      </table>
+    <h3>PAN Topics</h3>
+      <h4>Subscribes</h4>
+      <ul class="topic-list">
+      <li><code>nav.goto { path, replace?, state? }</code></li>
+<li><code>nav.back, nav.forward</code></li>
+</ul>
+
+      <h4>Publishes</h4>
+      <ul class="topic-list">
+      <li><code>nav.state (retained) { path, query, hash, params }</code></li>
+</ul>
+
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-router
+  base="value"&gt;&lt;/pan-router&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-schema-form">
+      <h2><code>&lt;pan-schema-form&gt;</code></h2>
+      <p class="description">JSON Schema–driven form for PAN resources</p>
+  
+      <h3>Attributes</h3>
+      <table class="attr-table">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <td><code>`${resource}.item.select`</code></td>
+            <td>to load the selected item</td>
+          </tr>
+      
+          <tr>
+            <td><code>`${resource}.item.state.*`</code></td>
+            <td>live updates for currently loaded item (optional)</td>
+          </tr>
+      
+        </tbody>
+      </table>
+    
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-schema-form
+  `${resource}.item.select`="value"&gt;&lt;/pan-schema-form&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-schema">
+      <h2><code>&lt;pan-schema&gt;</code></h2>
+      <p class="description">Publishes JSON Schema for a resource on the PAN bus</p>
+  
+      <h3>Attributes</h3>
+      <table class="attr-table">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <td><code>resource</code></td>
+            <td>logical resource name (e.g., "users")</td>
+          </tr>
+      
+          <tr>
+            <td><code>src</code></td>
+            <td>optional URL to fetch JSON Schema from</td>
+          </tr>
+      
+        </tbody>
+      </table>
+    
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-schema
+  resource="value"&gt;&lt;/pan-schema&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-search-bar">
+      <h2><code>&lt;pan-search-bar&gt;</code></h2>
+      <p class="description">Search input with filters and PAN topic integration</p>
+  
+      <h3>Attributes</h3>
+      <table class="attr-table">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <td><code>placeholder</code></td>
+            <td>Input placeholder text</td>
+          </tr>
+      
+          <tr>
+            <td><code>topic</code></td>
+            <td>Topic prefix for events</td>
+          </tr>
+      
+          <tr>
+            <td><code>debounce</code></td>
+            <td>Debounce delay in ms (default: 300)</td>
+          </tr>
+      
+          <tr>
+            <td><code>filters</code></td>
+            <td>JSON array of filter options [{label, value, icon?}]</td>
+          </tr>
+      
+          <tr>
+            <td><code>show-filters</code></td>
+            <td>Show filter dropdown (default: true if filters provided)</td>
+          </tr>
+      
+          <tr>
+            <td><code>Publishes</code></td>
+            <td>{topic}.search { query, filter }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Publishes</code></td>
+            <td>{topic}.clear</td>
+          </tr>
+      
+          <tr>
+            <td><code>Subscribes</code></td>
+            <td>{topic}.set { query?, filter? }</td>
+          </tr>
+      
+        </tbody>
+      </table>
+    <h3>PAN Topics</h3>
+      <h4>Subscribes</h4>
+      <ul class="topic-list">
+      <li><code>{topic}.set { query?, filter? }</code></li>
+</ul>
+
+      <h4>Publishes</h4>
+      <ul class="topic-list">
+      <li><code>{topic}.search { query, filter }</code></li>
+<li><code>{topic}.clear</code></li>
+</ul>
+
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-search-bar
+  placeholder="value"&gt;&lt;/pan-search-bar&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-sse">
+      <h2><code>&lt;pan-sse&gt;</code></h2>
+      <p class="description">Bridge Server-Sent Events to PAN bus</p>
+  
+      <h3>Attributes</h3>
+      <table class="attr-table">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <td><code>src</code></td>
+            <td>SSE endpoint URL</td>
+          </tr>
+      
+          <tr>
+            <td><code>topics</code></td>
+            <td>optional space-sep list; appended as ?topics=...</td>
+          </tr>
+      
+          <tr>
+            <td><code>with-credentials</code></td>
+            <td>include credentials on EventSource</td>
+          </tr>
+      
+          <tr>
+            <td><code>persist-last-event</code></td>
+            <td>localStorage key to store lastEventId and pass as ?lastEventId</td>
+          </tr>
+      
+          <tr>
+            <td><code>backoff</code></td>
+            <td>min,max in ms (e.g., "1000,15000"); jittered reconnect</td>
+          </tr>
+      
+        </tbody>
+      </table>
+    
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-sse
+  src="value"&gt;&lt;/pan-sse&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-tabs">
+      <h2><code>&lt;pan-tabs&gt;</code></h2>
+      <p class="description">Tabbed interface with PAN topic integration</p>
+  
+      <h3>Attributes</h3>
+      <table class="attr-table">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <td><code>active</code></td>
+            <td>Currently active tab index (default: 0)</td>
+          </tr>
+      
+          <tr>
+            <td><code>topic</code></td>
+            <td>Topic prefix for events</td>
+          </tr>
+      
+          <tr>
+            <td><code>tabs</code></td>
+            <td>JSON array of tab configs [{label, id, icon?, disabled?}]</td>
+          </tr>
+      
+          <tr>
+            <td><code>Subscribes</code></td>
+            <td>{topic}.select { index }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Publishes</code></td>
+            <td>{topic}.changed { index, id, label }</td>
+          </tr>
+      
+        </tbody>
+      </table>
+    <h3>PAN Topics</h3>
+      <h4>Subscribes</h4>
+      <ul class="topic-list">
+      <li><code>{topic}.select { index }</code></li>
+</ul>
+
+      <h4>Publishes</h4>
+      <ul class="topic-list">
+      <li><code>{topic}.changed { index, id, label }</code></li>
+</ul>
+
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-tabs
+  active="value"&gt;&lt;/pan-tabs&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-theme-provider">
+      <h2><code>&lt;pan-theme-provider&gt;</code></h2>
+      <p class="description">No description available</p>
+  
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-theme-provider&gt;&lt;/pan-theme-provider&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-theme-toggle">
+      <h2><code>&lt;pan-theme-toggle&gt;</code></h2>
+      <p class="description">No description available</p>
+  
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-theme-toggle&gt;&lt;/pan-theme-toggle&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-tree">
+      <h2><code>&lt;pan-tree&gt;</code></h2>
+      <p class="description">Collapsible tree component with drag-drop and inline editing</p>
+  
+      <h3>Attributes</h3>
+      <table class="attr-table">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <td><code>resource</code></td>
+            <td>Resource name for PAN topics (default: 'tree')</td>
+          </tr>
+      
+          <tr>
+            <td><code>data</code></td>
+            <td>JSON string for tree data</td>
+          </tr>
+      
+          <tr>
+            <td><code>url</code></td>
+            <td>URL to fetch JSON tree data</td>
+          </tr>
+      
+          <tr>
+            <td><code>editable</code></td>
+            <td>Enable drag-drop reordering and inline editing</td>
+          </tr>
+      
+          <tr>
+            <td><code>expanded</code></td>
+            <td>Start with all nodes expanded</td>
+          </tr>
+      
+          <tr>
+            <td><code>indent</code></td>
+            <td>Indentation per level in pixels (default: 20)</td>
+          </tr>
+      
+          <tr>
+            <td><code>icon-open</code></td>
+            <td>Icon for open folders (default: ▼)</td>
+          </tr>
+      
+          <tr>
+            <td><code>icon-closed</code></td>
+            <td>Icon for closed folders (default: ▶)</td>
+          </tr>
+      
+          <tr>
+            <td><code>icon-leaf</code></td>
+            <td>Icon for leaf nodes (default: •)</td>
+          </tr>
+      
+          <tr>
+            <td><code>Subscribes</code></td>
+            <td>{resource}.data.set { tree }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Subscribes</code></td>
+            <td>{resource}.node.expand { id }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Subscribes</code></td>
+            <td>{resource}.node.collapse { id }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Subscribes</code></td>
+            <td>{resource}.node.toggle { id }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Publishes</code></td>
+            <td>{resource}.node.select { id, node, path }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Publishes</code></td>
+            <td>{resource}.node.edit { id, oldLabel, newLabel }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Publishes</code></td>
+            <td>{resource}.node.move { nodeId, oldParentId, newParentId, oldIndex, newIndex }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Publishes</code></td>
+            <td>{resource}.node.expanded { id, node }</td>
+          </tr>
+      
+          <tr>
+            <td><code>Publishes</code></td>
+            <td>{resource}.node.collapsed { id, node }</td>
+          </tr>
+      
+        </tbody>
+      </table>
+    <h3>PAN Topics</h3>
+      <h4>Subscribes</h4>
+      <ul class="topic-list">
+      <li><code>{resource}.data.set { tree }</code></li>
+<li><code>{resource}.node.expand { id }</code></li>
+<li><code>{resource}.node.collapse { id }</code></li>
+<li><code>{resource}.node.toggle { id }</code></li>
+</ul>
+
+      <h4>Publishes</h4>
+      <ul class="topic-list">
+      <li><code>{resource}.node.select { id, node, path }</code></li>
+<li><code>{resource}.node.edit { id, oldLabel, newLabel }</code></li>
+<li><code>{resource}.node.move { nodeId, oldParentId, newParentId, oldIndex, newIndex }</code></li>
+<li><code>{resource}.node.expanded { id, node }</code></li>
+<li><code>{resource}.node.collapsed { id, node }</code></li>
+</ul>
+
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-tree
+  resource="value"&gt;&lt;/pan-tree&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-websocket">
+      <h2><code>&lt;pan-websocket&gt;</code></h2>
+      <p class="description">Bidirectional WebSocket ↔ PAN bridge</p>
+  
+      <h3>Attributes</h3>
+      <table class="attr-table">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <td><code>url</code></td>
+            <td>WebSocket server URL</td>
+          </tr>
+      
+          <tr>
+            <td><code>protocols</code></td>
+            <td>optional protocol string</td>
+          </tr>
+      
+          <tr>
+            <td><code>outbound-topics</code></td>
+            <td>space-sep list of topics to forward to server</td>
+          </tr>
+      
+          <tr>
+            <td><code>inbound-topics</code></td>
+            <td>space-sep list of topics to publish from server</td>
+          </tr>
+      
+          <tr>
+            <td><code>auto-reconnect</code></td>
+            <td>enable automatic reconnection (default: true)</td>
+          </tr>
+      
+          <tr>
+            <td><code>reconnect-delay</code></td>
+            <td>min,max delay in ms (default: "1000,15000")</td>
+          </tr>
+      
+          <tr>
+            <td><code>heartbeat</code></td>
+            <td>seconds between ping messages (default: 30)</td>
+          </tr>
+      
+          <tr>
+            <td><code>heartbeat-topic</code></td>
+            <td>topic for heartbeat pings (default: "sys.ping")</td>
+          </tr>
+      
+          <tr>
+            <td><code>Publishes</code></td>
+            <td>ws.connected, ws.disconnected, ws.error</td>
+          </tr>
+      
+          <tr>
+            <td><code>Publishes</code></td>
+            <td>ws.message (raw message events)</td>
+          </tr>
+      
+        </tbody>
+      </table>
+    <h3>PAN Topics</h3>
+      <h4>Publishes</h4>
+      <ul class="topic-list">
+      <li><code>ws.connected, ws.disconnected, ws.error</code></li>
+<li><code>ws.message (raw message events)</code></li>
+</ul>
+
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-websocket
+  url="value"&gt;&lt;/pan-websocket&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="pan-worker">
+      <h2><code>&lt;pan-worker&gt;</code></h2>
+      <p class="description">Bridge PAN topics to a Web Worker for offloading compute/fetch.</p>
+  
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;pan-worker&gt;&lt;/pan-worker&gt;</code></pre>
+    </div>
+  
+
+    <div class="component" id="user-avatar">
+      <h2><code>&lt;user-avatar&gt;</code></h2>
+      <p class="description">User avatar with status indicator</p>
+  
+      <h3>Attributes</h3>
+      <table class="attr-table">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <td><code>name</code></td>
+            <td>User name (for initials)</td>
+          </tr>
+      
+          <tr>
+            <td><code>image</code></td>
+            <td>Image URL</td>
+          </tr>
+      
+          <tr>
+            <td><code>size</code></td>
+            <td>xs, sm, md, lg, xl (default: md)</td>
+          </tr>
+      
+          <tr>
+            <td><code>status</code></td>
+            <td>online, offline, away, busy</td>
+          </tr>
+      
+          <tr>
+            <td><code>show-status</code></td>
+            <td>Show status indicator (default: false)</td>
+          </tr>
+      
+          <tr>
+            <td><code>color</code></td>
+            <td>Custom background color</td>
+          </tr>
+      
+          <tr>
+            <td><code>default</code></td>
+            <td>Custom content (overrides image/initials)</td>
+          </tr>
+      
+        </tbody>
+      </table>
+    
+      <h3>Example</h3>
+      <pre><code class="language-html">&lt;user-avatar
+  name="value"&gt;&lt;/user-avatar&gt;</code></pre>
+    </div>
+  
+    </main>
+  </div>
+</body>
+</html>
