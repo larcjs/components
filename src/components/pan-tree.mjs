@@ -253,11 +253,6 @@ export class PanTree extends HTMLElement {
     const node = this.getNodeByPath(path);
     if (!node) return;
 
-    // Toggle if it has children
-    if (node.children && node.children.length > 0) {
-      this.toggleNode(id);
-    }
-
     // Publish select event
     this.pc.publish({
       topic: `${this.resource}.node.select`,
@@ -442,6 +437,7 @@ export class PanTree extends HTMLElement {
     root.addEventListener('click', (e) => {
       const toggle = e.target.closest('[data-action="toggle"]');
       if (toggle) {
+        e.stopPropagation(); // Prevent event from bubbling to node-content handler
         const node = e.target.closest('.tree-node');
         if (node) {
           const id = node.dataset.id;
